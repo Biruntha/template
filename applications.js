@@ -292,10 +292,10 @@ var tokenGrantType = this.element.find(".tokenGrantType").val();
 		        } else {
 		            jagg.message({content: result.message, type: "error"});
 		        }
-		    },this), "json")}
-	  	});
+		    },this), "json");
 
             return false;
+}});
         },
 
         regenerateToken: function(){            
@@ -356,9 +356,9 @@ $("#updateForm").validate({
                     //@todo: param_string
                     jagg.message({content:result.message,type:"error"});
                 }
-            }, this), "json")}
-	  });                       
+            }, this), "json");     
             return false;
+}});
         },
 
         render: function(){                   
