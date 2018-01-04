@@ -69,19 +69,19 @@
 		  
 	<div class="form-group">
 		<label class="" for="ConsumerKey"><%=i18n.localize("Callback URL")%> <span class="requiredAstrix">*</span></label>
-		<input type="text" required class="form-control callback_url" title="Callback URL" autofocus="autofocus">	      
+		<input type="text" required class="form-control callback_url" name="callback_url" title="Callback URL" value="{{callbackUrl}}" autofocus="autofocus">	      
 	</div>
 	<div class="form-group">
 		<label class="" for="ConsumerKey">Application Type <span class="requiredAstrix">*</span></label>
-		<input type="text" required class="form-control application_type" title="Application Type" autofocus="autofocus">	      
+		<input type="text" required class="form-control application_type" name="application_type" title="Application Type" value="{{application_type}}" autofocus="autofocus">	      
 	</div>
 	<div class="form-group">
 		<label class="" for="ConsumerKey">Response Types <span class="requiredAstrix">*</span></label>
-		<input type="text" required class="form-control response_types" title="Response Types" autofocus="autofocus">	      
+		<input type="text" required class="form-control response_types" name="response_types" title="Response Types" value="{{response_types}}" autofocus="autofocus">	      
 	</div>
 	<div class="form-group">
 		<label class="" for="ConsumerKey">Token Endpoint Auth Method <span class="requiredAstrix">*</span></label>
-		<input type="text" required class="form-control token_endpoint_auth_method" title="Token Endpoint Auth Method" autofocus="autofocus">	      
+		<input type="text" required class="form-control token_endpoint_auth_method" name="token_endpoint_auth_method" title="Token Endpoint Auth Method" value="{{token_endpoint_auth_method}}" autofocus="autofocus">	      
 	</div>
 
 
@@ -184,27 +184,27 @@
 
 		<div class="form-group">
 			<label class="" for="ConsumerKey"><%=i18n.localize("Callback URL")%> <span class="requiredAstrix">*</span></label>
-			<input type="text" required class="form-control callback_url" title="Callback URL" value="{{callbackUrl}}" autofocus="autofocus">	      
+			<input type="text" required class="form-control callback_url" name="callback_url" title="Callback URL" value="{{callbackUrl}}" autofocus="autofocus">	      
 		</div>
 		<div class="form-group">
 			<label class="" for="ConsumerKey">Application Type <span class="requiredAstrix">*</span></label>
-			<input type="text" required class="form-control application_type" title="Application Type" value="{{application_type}}">	      
+			<input type="text" required class="form-control application_type" name="callback_url" title="Application Type" value="{{application_type}}">	      
 		</div>
 		<div class="form-group">
 			<label class="" for="ConsumerKey">Response Types <span class="requiredAstrix">*</span></label>
-			<input type="text" required class="form-control response_types" title="Response Types" autofocus="autofocus">	      
+			<input type="text" required class="form-control response_types" name="callback_url" title="Response Types" autofocus="autofocus">	      
 		</div>
 		<div class="form-group">
 			<label class="" for="ConsumerKey">Token Endpoint Auth Method <span class="requiredAstrix">*</span></label>
-			<input type="text" required class="form-control token_endpoint_auth_method" title="Token Endpoint Auth Method" autofocus="autofocus">	      
+			<input type="text" required class="form-control token_endpoint_auth_method" name="token_endpoint_auth_method" title="Token Endpoint Auth Method" autofocus="autofocus">	      
 		</div>
 		 <div class="form-group">
 			<label class="" for="ConsumerKey">Token Scope <span class="requiredAstrix">*</span></label>
-			<input type="text" required class="form-control scope" title="Token Scope" autofocus="autofocus">	      
+			<input type="text" required class="form-control scope" title="Token Scope" name="scope" autofocus="autofocus">	      
 		</div>
 		<div class="form-group">
 			<label class="" for="ConsumerKey">Token Grant Type <span class="requiredAstrix">*</span></label>
-			<input type="text" required class="form-control tokenGrantType" title="Token Grant Type" autofocus="autofocus">	      
+			<input type="text" required class="form-control tokenGrantType" name="tokenGrantType" title="Token Grant Type" autofocus="autofocus">	      
 		</div>
 
 
@@ -219,7 +219,7 @@
                 <div class="form-group">
                     <label><%=i18n.localize("Access token validity period")%> </label>
                     <div class="input-group col-sm-6">
-                      <input type="text" size="10" title="validity_time" value='{{ValidityTime}}' class="form-control form-control-md validity_time">
+                      <input type="text" size="10" title="validity_time" name="validity_time" value='{{ValidityTime}}' class="form-control form-control-md validity_time">
                       <div class="input-group-addon"><%=i18n.localize("Seconds")%></div>
                     </div>
                 </div>

@@ -118,7 +118,6 @@ GrantTypes.prototype.getMap = function(selected){
     // The actual plugin constructor
     function Plugin( element, options ) {
         this.element = $(element);
-
         this.app = options.app;
         this.type = options.type;
         this.app.show_keys = ( $.cookie('OAuth_key_visibility') === 'true');
@@ -251,7 +250,9 @@ GrantTypes.prototype.getMap = function(selected){
             }, "json");
         },
 
-        generateKeys: function(){            
+        generateKeys: function(){  
+var _this=this;
+          
             var validity_time = this.element.find(".validity_time").val();
 var application_type = this.element.find(".application_type").val();
 var response_types = this.element.find(".response_types").val();
@@ -265,34 +266,36 @@ var tokenGrantType = this.element.find(".tokenGrantType").val();
                             .map(function(){ return $( this ).val();}).get().join(" ");
             
             this.element.find('.generatekeys').buttonLoader('start');
+
+  
 	    $("#myform").validate({
 		submitHandler: function(form) {
 		    jagg.post("/site/blocks/subscription/subscription-add/ajax/subscription-add.jag", {
 		        action: "generateApplicationKey",
-		        application: this.app.name,
-		        keytype: this.type,
-		        callbackUrl: this.app.callbackUrl,
+		        application: _this.app.name,
+		        keytype: _this.type,
+		        callbackUrl: _this.app.callbackUrl,
 		        validityTime: validity_time,
 		        tokenScope: "",
-		        jsonParams:'{"client_name": "'+this.app.name+'", "redirect_uris": "'+this.app.callbackUrl+'", "response_types": "'+response_types+'", "grant_types": "'+selected+'","token_endpoint_auth_method": "'+token_endpoint_auth_method+'","tokenScope": "'+scope+'","application_type": "'+application_type+'","tokenGrantType" : "'+tokenGrantType+'"}',
+		        jsonParams:'{"client_name": "'+_this.app.name+'", "redirect_uris": "'+_this.app.callbackUrl+'", "response_types": "'+response_types+'", "grant_types": "'+selected+'","token_endpoint_auth_method": "'+token_endpoint_auth_method+'","tokenScope": "'+scope+'","application_type": "'+application_type+'","tokenGrantType" : "'+tokenGrantType+'"}',
 		    }, $.proxy(function (result) {
-		        this.element.find('.generatekeys').buttonLoader('stop');
+		        _this.element.find('.generatekeys').buttonLoader('stop');
 		        if (!result.error) {
 		            if ((typeof(result.data.key.appDetails) != 'undefined') ||  (result.data.key.appDetails != null)){
 		                var appDetails = JSON.parse(result.data.key.appDetails);
-		                this.app.grants = this.grants.getMap(appDetails.grant_types);
+		                _this.app.grants = _this.grants.getMap(appDetails.grant_types);
 		            }
-		            this.app.ConsumerKey = result.data.key.consumerKey,
-		            this.app.ConsumerSecret = result.data.key.consumerSecret,
-		            this.app.Key = result.data.key.accessToken,
-		            this.app.KeyScope = result.data.key.tokenScope,
-		            this.app.ValidityTime = result.data.key.validityTime,
-		            this.app.keyState = result.data.key.keyState,
-		            this.render();
+		            _this.app.ConsumerKey = result.data.key.consumerKey,
+		            _this.app.ConsumerSecret = result.data.key.consumerSecret,
+		            _this.app.Key = result.data.key.accessToken,
+		            _this.app.KeyScope = result.data.key.tokenScope,
+		            _this.app.ValidityTime = result.data.key.validityTime,
+		            _this.app.keyState = result.data.key.keyState,
+		            _this.render();
 		        } else {
 		            jagg.message({content: result.message, type: "error"});
 		        }
-		    },this), "json");
+		    },_this), "json");
 
             return false;
 }});
@@ -332,6 +335,8 @@ var tokenGrantType = this.element.find(".tokenGrantType").val();
         },
 
         updateGrants: function(){
+var _this=this;
+
 var application_type = this.element.find(".application_type").val();
 var response_types = this.element.find(".response_types").val();
 var token_endpoint_auth_method = this.element.find(".token_endpoint_auth_method").val();
@@ -345,18 +350,18 @@ $("#updateForm").validate({
 
             jagg.post("/site/blocks/subscription/subscription-add/ajax/subscription-add.jag", {
                 action:"updateClientApplication",
-                application:this.app.name,
-                keytype:this.type,
-                jsonParams: '{"grant_types":"'+selected+'", "client_id": "'+this.app.ConsumerKey+'", "client_name": "'+this.app.name+'", "redirect_uris": "'+this.app.callbackUrl+'","response_types": "'+response_types+'","token_endpoint_auth_method": "'+token_endpoint_auth_method+'","application_type": "'+application_type+'"}',
-                callbackUrl:this.app.callbackUrl
+                application:_this.app.name,
+                keytype:_this.type,
+                jsonParams: '{"grant_types":"'+selected+'", "client_id": "'+_this.app.ConsumerKey+'", "client_name": "'+_this.app.name+'", "redirect_uris": "'+_this.app.callbackUrl+'","response_types": "'+response_types+'","token_endpoint_auth_method": "'+token_endpoint_auth_method+'","application_type": "'+application_type+'"}',
+                callbackUrl:_this.app.callbackUrl
             }, $.proxy(function (result) {
-                this.element.find('.update_grants').buttonLoader('stop');
+                _this.element.find('.update_grants').buttonLoader('stop');
                 if (!result.error) {
                 } else {
                     //@todo: param_string
                     jagg.message({content:result.message,type:"error"});
                 }
-            }, this), "json");     
+            }, _this), "json");     
             return false;
 }});
         },
